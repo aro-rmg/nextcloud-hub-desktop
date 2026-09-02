@@ -1,0 +1,37 @@
+{
+  "name": "nextcloud-hub-desktop",
+  "productName": "Nextcloud Hub",
+  "version": "1.5.0",
+  "description": "Cross-platform desktop client wrapping the full Nextcloud Hub web interface, with Talk calls in their own window",
+  "main": "src/main/index.js",
+  "author": {
+    "name": "Antoine Rominger"
+  },
+  "license": "Apache 2.0",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "pack": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^43.5.1",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aro-rmg/nextcloud-hub-desktop.git"
+  },
+  "keywords": [
+    "nextcloud",
+    "nextcloud-talk",
+    "electron",
+    "desktop-client"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,73 @@
+appId: org.antoine.nextcloudhub
+productName: Nextcloud Hub
+copyright: Copyright (c) 2026 Antoine
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - src/**/*
+  - build/icon.*
+  - build/tray.png
+  - "!**/*.map"
+
+# No native modules: skip the rebuild step entirely.
+npmRebuild: false
+asar: true
+
+win:
+  icon: build/icon.ico
+  target:
+    - target: nsis
+      arch: [x64, arm64]
+    - target: portable
+      arch: [x64]
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Nextcloud Hub
+
+mac:
+  icon: build/icon.png
+  category: public.app-category.productivity
+  hardenedRuntime: true
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  target:
+    - target: dmg
+      arch: [x64, arm64]
+    - target: zip
+      arch: [x64, arm64]
+  extendInfo:
+    # Shown in the macOS permission prompts when a call starts.
+    NSCameraUsageDescription: Nextcloud Hub needs the camera for Talk video calls.
+    NSMicrophoneUsageDescription: Nextcloud Hub needs the microphone for Talk calls.
+
+linux:
+  icon: build/icon.png
+  category: Network
+  synopsis: Desktop client for the Nextcloud Hub web interface
+  desktop:
+    entry:
+      StartupWMClass: nextcloud-hub
+  target:
+    - target: AppImage
+      arch: [x64, arm64]
+    - target: deb
+      arch: [x64, arm64]
+    - target: rpm
+      arch: [x64]
+
+dmg:
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
